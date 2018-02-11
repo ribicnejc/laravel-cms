@@ -15,22 +15,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', function () {
-    return "Hi about page!";
-});
+//Route::get('/about', function () {
+//    return "Hi about page!";
+//});
+//
+//Route::get('/contact', function () {
+//    return "Hi I am contact";
+//});
+//
+//Route::get('/post/{id}/{name}', function ($id, $name) {
+//   return  $id . " " . $name;
+//});
+//
+//Route::get('admin/posts/example', array('as' => 'admin.home' ,function () {
+//    $url = route('admin.home');
+//    return "This url is " . $url;
+//}));
 
-Route::get('/contact', function () {
-    return "Hi I am contact";
-});
+//Route::get('/post/{id}', 'PostsController@index');
 
-Route::get('/post/{id}/{name}', function ($id, $name) {
-   return  $id . " " . $name;
-});
+Route::resource('posts', 'PostsController');
 
-Route::get('admin/posts/example', array('as' => 'admin.home' ,function () {
-    $url = route('admin.home');
-    return "This url is " . $url;
-}));
+Route::get('/contact', 'PostsController@contact');
+
+Route::get('post/{id}/{name}/{password}', 'PostsController@show_post');
+
+
+
+
 
 
 Route::group(['middleware' => ['web']], function () {
